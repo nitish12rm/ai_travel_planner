@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-const String BASE_URL = "http://192.168.46.160:4000/api/v1";
+const String BASE_URL = "http://10.21.81.121:4000/api/v1";
 const Map<String,dynamic> DEFAULT_HEADERS = {
   'content-type':'application/json'
 };
@@ -29,16 +29,21 @@ class ApiResponse{
 
   String status;
   dynamic data;
+  dynamic items;
 
 
-  ApiResponse({required this.status, this.data});
+  ApiResponse({ required this.status, this.data,this.items});
 
 
   factory ApiResponse.fromResponse(Response res){
     final data = res.data;
+    final items = res.data;
     return ApiResponse(
         status: data["status"],
         data: data["data"],
+      items: data["items"]
+
+
     );
   }
 

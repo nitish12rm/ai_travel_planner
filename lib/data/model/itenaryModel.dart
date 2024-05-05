@@ -87,6 +87,8 @@ class Places {
   String? attraction;
   String? visitTime;
   String? childrenAllowed;
+  String? longitude;
+  String? latitude;
 
   Places(
       {this.name,
@@ -95,11 +97,16 @@ class Places {
         this.description,
         this.attraction,
         this.visitTime,
-        this.childrenAllowed});
+        this.childrenAllowed,
+      this.latitude,
+        this.longitude
+      });
 
   Places.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     location = json['location'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
     imageLink = json['image_link'];
     description = json['description'];
     attraction = json['attraction'];
@@ -112,6 +119,8 @@ class Places {
     data['name'] = this.name;
     data['location'] = this.location;
     data['image_link'] = this.imageLink;
+    data['latitude'] = this.latitude;
+    data['longitude'] = this.longitude;
     data['description'] = this.description;
     data['attraction'] = this.attraction;
     data['VisitTime'] = this.visitTime;
