@@ -73,6 +73,9 @@ class _VoiceScreenState extends State<VoiceScreen> {
                 child: TextField(
                   maxLines: 10,
                   controller: TextEditingController(text: _lastWords),
+                  onChanged: (val){
+                    _lastWords  = val;
+                  },
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(fontSize: 30, color: Colors.white),
                   ),

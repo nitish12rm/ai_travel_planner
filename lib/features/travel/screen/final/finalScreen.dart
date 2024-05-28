@@ -2,11 +2,16 @@ import 'package:ai_travel_planner/data/Repository/itenary.dart';
 import 'package:ai_travel_planner/data/model/itenaryModel.dart';
 import 'package:ai_travel_planner/features/travel/screen/final/widget/infiniteDraggableSlider/coverImage.dart';
 import 'package:ai_travel_planner/features/travel/screen/final/widget/infiniteDraggableSlider/infiniteDraggableSlider.dart';
+import 'package:ai_travel_planner/features/travel/screen/seemore/seenore.dart';
+import 'package:ai_travel_planner/features/travel/screen/timeline2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Finalscreen extends StatelessWidget {
@@ -28,11 +33,9 @@ String tex = '''You’re an experienced travel planner who has helped countless 
 Your task is to create a customized travel itinerary for an extroverted individual who loves swimming, skydiving, dancing, shopping, immersing themselves in different cultures, and uncovering hidden gems. The itinerary should include the best destinations and activities that cater to these interests, ensuring a well-rounded and unforgettable travel experience.
 Remember to consider each activity carefully, suggest suitable destinations, and provide a mix of popular attractions and off-the-beaten-path experiences to cater to the traveler’s adventurous spirit and outgoing nature.
 For example, when recommending a destination for swimming, consider suggesting pristine beaches with clear waters such as the Maldives or vibrant swimming holes like the cenotes in Mexico. For dancing, recommend cities known for their lively nightlife and dance clubs such as Havana, Cuba, or Rio de Janeiro, Brazil. When highlighting hidden gems, suggest lesser-known spots like the colorful village of Chefchaouen in Morocco or the secluded beaches of Fernando de Noronha in Brazil.''';
- Future req() async{
-
-ItenaryRepo repo = ItenaryRepo();
- itenary = await repo.FetchIten(query+" for ${days} number of days");
-print(itenary.places!.length);
+ Future req() async {
+   ItenaryRepo repo = ItenaryRepo();
+   itenary = await repo.FetchIten(query + " for ${days+1} number of days");
  }
   @override
   Widget build(BuildContext context) {
@@ -55,15 +58,24 @@ print(itenary.places!.length);
       return SingleChildScrollView(
         child: Column(
           children: [
-            Center(
-                child: Text(
-                  "Your Legend",
-                  style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold)),
-                )),
+         AppBar(backgroundColor: Colors.transparent,centerTitle:true ,title: Text(
+              "Your Legend",
+              style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+            ),actions: [IconButton(onPressed: (){Get.to(TimeLine2(query: query + " for ${days} number of days"));}, icon: Icon(Iconsax.map,color: Colors.white,))],),
+
+            // Center(
+            //     child: Text(
+            //       "Your Legend",
+            //       style: GoogleFonts.poppins(
+            //           textStyle: TextStyle(
+            //               fontSize: 30,
+            //               color: Colors.white,
+            //               fontWeight: FontWeight.bold)),
+            //     )),
 
             ///TAbs
             SizedBox(
@@ -258,18 +270,21 @@ print(itenary.places!.length);
                                       ),
                                     ),
                                   ),
-                                  GlassContainer(
-                                    borderRadius: BorderRadius.circular(100),
-                                    width: 100,
-                                    height: 50,
-                                    child: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                        child: Text(
-                                          "See more",
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.white,
+                                  InkWell(
+                                    onTap: () => Get.to(SeeMore(item: itenary.places![index],)),
+                                    child: GlassContainer(
+                                      borderRadius: BorderRadius.circular(100),
+                                      width: 100,
+                                      height: 50,
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                          child: Text(
+                                            "See more",
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
