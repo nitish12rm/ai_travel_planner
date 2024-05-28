@@ -114,7 +114,7 @@ class _ReccomendationState extends State<Reccomendation> {
 
 
     var resp = await http.post(Uri.parse(
-        "http://192.168.46.160:4000/api/v1/query"
+        "https://genaitravelbackend.onrender.com/api/v1/query"
       // "https://genaitravelbackend.onrender.com/api/v1/query"
     ),body: {"query": widget.text});
 
