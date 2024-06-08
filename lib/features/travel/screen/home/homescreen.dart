@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             ///Earth image
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(right:30.0),
+                padding: const EdgeInsets.only(right: 30.0),
                 child: Container(
                   width: double.infinity,
                   child: Transform.scale(
@@ -42,17 +42,14 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppBarWelcome(),
-
                     SizedBox(
                       height: 10,
                     ),
                     HomeIntroText(),
-
                     SizedBox(
                       height: 180,
                     ),
                     Suggestions(),
-
                     SizedBox(
                       height: 10,
                     ),
@@ -63,8 +60,11 @@ class HomeScreen extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Container(
-                                height: 330,
-                                child: Image.asset("asset/travel2.jpg",fit: BoxFit.cover,),
+                                width: MediaQuery.of(context).size.width * .5,
+                                child: Image.asset(
+                                  "asset/travel2.jpg",
+                                  fit: BoxFit.cover,
+                                ),
                                 decoration: BoxDecoration(
                                     color: Colors.red,
                                     borderRadius: BorderRadius.circular(20)),
@@ -80,11 +80,13 @@ class HomeScreen extends StatelessWidget {
                                 Flexible(
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(20),
-
                                     child: Container(
-                                      height: 165,
-                                      child: Image.asset("asset/travel1.jpg",fit: BoxFit.cover,),
-
+                                      width: MediaQuery.of(context).size.width *
+                                          .5,
+                                      child: Image.asset(
+                                        "asset/travel1.jpg",
+                                        fit: BoxFit.cover,
+                                      ),
                                       decoration: BoxDecoration(
                                           color: Colors.green,
                                           borderRadius:
@@ -98,12 +100,13 @@ class HomeScreen extends StatelessWidget {
                                 Flexible(
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(20),
-
                                     child: Container(
-                                      height: 165,
-                                      width: 500,
-                                      child: Image.asset("asset/travel3.jpg",fit: BoxFit.cover,),
-
+                                      width: MediaQuery.of(context).size.width *
+                                          .5,
+                                      child: Image.asset(
+                                        "asset/travel3.jpg",
+                                        fit: BoxFit.cover,
+                                      ),
                                       decoration: BoxDecoration(
                                           color: Colors.blue,
                                           borderRadius:
@@ -127,16 +130,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-
-
     );
   }
 }
-
-
-
-
-
-
-
-

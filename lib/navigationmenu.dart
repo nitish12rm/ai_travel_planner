@@ -14,68 +14,69 @@ class NavigationMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationMenuController());
     return Scaffold(
-      bottomNavigationBar:Obx(
-        ()=>NavigationBarTheme(
+      bottomNavigationBar: Obx(
+        () => NavigationBarTheme(
           data: NavigationBarThemeData(
             labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
-                  (Set<MaterialState> states) =>
-              states.contains(MaterialState.selected)
-                  ? const TextStyle(color: Colors.white)
-                  : const TextStyle(color: Colors.grey),
+              (Set<MaterialState> states) =>
+                  states.contains(MaterialState.selected)
+                      ? const TextStyle(color: Colors.white)
+                      : const TextStyle(color: Colors.grey),
             ),
           ),
           child: NavigationBar(
-                backgroundColor: Colors.black,
-                indicatorColor: Colors.black,
-                selectedIndex: controller.selectedIndex.value,
-                onDestinationSelected: (index) =>controller.selectedIndex.value = index ,
-                destinations: [
-                  NavigationDestination(
-                      icon: Icon(Iconsax.home),
-                      selectedIcon: Icon(
-                        Iconsax.home5,
-                        color: Colors.white,
-                      ),
-                      label: "Home"),
-                  NavigationDestination(
-                      icon: Icon(Iconsax.activity),
-                      selectedIcon: Icon(
-                        Iconsax.activity5,
-                        color: Colors.white,
-                      ),
-                      label: "Recents"),
-                  NavigationDestination(
-                      icon: Icon(Iconsax.location),
-                      selectedIcon: Icon(
-                        Iconsax.location5,
-                        color: Colors.white,
-                      ),
-                      label: "Search"),
-                  NavigationDestination(
-                    icon: Icon(Iconsax.profile_2user4),
+              backgroundColor: Colors.black,
+              indicatorColor: Colors.black,
+              selectedIndex: controller.selectedIndex.value,
+              onDestinationSelected: (index) =>
+                  controller.selectedIndex.value = index,
+              destinations: [
+                NavigationDestination(
+                    icon: Icon(Iconsax.home),
                     selectedIcon: Icon(
-                      Iconsax.profile_2user5,
+                      Iconsax.home5,
                       color: Colors.white,
                     ),
-                    label: "Profile",
+                    label: "Home"),
+                NavigationDestination(
+                    icon: Icon(Iconsax.activity),
+                    selectedIcon: Icon(
+                      Iconsax.activity5,
+                      color: Colors.white,
+                    ),
+                    label: "Recents"),
+                NavigationDestination(
+                    icon: Icon(Iconsax.location),
+                    selectedIcon: Icon(
+                      Iconsax.location5,
+                      color: Colors.white,
+                    ),
+                    label: "Search"),
+                NavigationDestination(
+                  icon: Icon(Iconsax.profile_2user4),
+                  selectedIcon: Icon(
+                    Iconsax.profile_2user5,
+                    color: Colors.white,
                   ),
-                ]),
-          ),
+                  label: "Profile",
+                ),
+              ]),
+        ),
       ),
 
       ///We will have to wrap the body with the OBX so that it listens to the changes in the controller or navigation menu controller
-      body: Obx(()=> controller.screens[controller.selectedIndex.value]),
+      body: Obx(() => controller.screens[controller.selectedIndex.value]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: VoiceCommandFloatingButton(),
     );
   }
 }
 
-
-
 class NavigationMenuController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
-  final screens = [const HomeScreen(),];
+  final screens = [
+    const HomeScreen(),
+  ];
 }
 ///So here we are not using the sad state because the sad state will redraw the whole screen and that is what we don't want because it will take resources if they ask so many widgets to be rebuilt. Instead of that we are using the get X controller and to be exact we are we are creating a class now called navigation menu controller which is extending or we can say inheriting the gate X controller so it'll be listening to the index.
 ///But how exactly will it be listening to the index of the navigation menu bar well for that they get its controller half the EOPS method that actually listens to the variable
